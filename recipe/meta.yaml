@@ -1,5 +1,6 @@
 {% set name = "gpyconform" %}
-{% set version = "0.1.0" %}
+{% set version = "0.1.1" %}
+{% set python_min = "3.8" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +8,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/gpyconform-{{ version }}.tar.gz
-  sha256: 741f304bb35a65ecf5d7ef3a19b002e7b5363761cf20f70752f2cdb344ef4dad
+  sha256: 1d585f639a294c3123353f171801d0bdc328c115ad6fd6f66e95ea5ef4f51ceb
 
 build:
   noarch: python
@@ -16,13 +17,13 @@ build:
 
 requirements:
   host:
-    - python >=3.8
+    - python {{ python_min }}
     - setuptools >=61.0
     - pip
   run:
-    - python >=3.8
+    - python >={{ python_min }}
     - pytorch >=2.0
-    - gpytorch ==1.12
+    - gpytorch ==1.13
     - linear_operator >=0.5.3
     - numpy
 
@@ -32,6 +33,7 @@ test:
   commands:
     - pip check
   requires:
+    - python {{ python_min }}
     - pip
 
 about:
